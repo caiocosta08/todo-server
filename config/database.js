@@ -1,7 +1,7 @@
 module.exports = {
-  username: 'caio',
-  password: 'caio',
-  database: 'projeto_delivery',
-  host: '192.168.64.2',
-  dialect: 'mysql',
+  username: process.env.DB_USER, //|| 'root',
+  password: process.env.DB_PASS, //|| '',
+  database: process.env.DB_DB, //|| 'projeto_delivery',
+  host: process.env.DB_HOST, //|| 'localhost',
+  dialect: process.env.DB_DIALECT, //|| 'mysql',
 }
