@@ -116,6 +116,19 @@ app.post('/update', async (req, res) => {
     //res.end()
 });
 
+app.post('/delete', async (req, res) => {
+    console.log('POST REQ TO DELETE USER');
+    let user = await User.destroy({
+        where: {
+            id: req.body.id
+        }
+    })
+        .then()
+        .catch(error => false)
+    if(user) res.json(await user);
+    else res.jsonp(null);
+});
+
 app.listen(8000, function(){
     console.log('Servidor rodando no link: http://localhost:8000');
 });
