@@ -5,23 +5,13 @@ const path = require('path');
 const indexRouter = require('./routes/index');
 const configRouter = require('./routes/config');
 const profileRouter = require('./routes/profile');
-const {User} = require('../app/models');
+const tasksRouter = require('./routes/tasks');
+const categoriesRouter = require('./routes/categories');
+const statusRouter = require('./routes/status');
+const usersRouter = require('./routes/users');
+const scopesRouter = require('./routes/scopes');
 
 const app = express();
-//User.create({ name: 'Claudio', email: 'claudio@rocketseat.com.br', password: '123456' });
-
-
-/*
-app.get('/users/:name/:email/:password', async (req, res) => {
-    
-    let name = req.params.name;
-    let email = req.params.email;
-    let password = req.params.password;
-    const user = await User.create({name: name, email: email, password: password})
-    console.log(user)
-    res.json(user)
-});
-*/
 
 global.users = [];
 
@@ -30,6 +20,11 @@ app.use(bodyParser.urlencoded({extended: false}));
 //app.use('/', indexRouter);
 app.use('/profile', profileRouter);
 app.use('/config', configRouter);
+app.use('/tasks', tasksRouter)
+app.use('/categories', categoriesRouter)
+app.use('/status', statusRouter)
+app.use('/users', usersRouter)
+app.use('/scopes', scopesRouter)
 // Add headers
 app.use(function (req, res, next) {
 
@@ -50,51 +45,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-
-app.engine('pug', require('pug').__express)
-
-app.set('view engine', 'pug');
-app.set('views', __dirname + '/views');
-
 app.get('/', function(req, res){
     res.render('index', { title: 'Hey', message: 'Hello there!'});
 })
-
-
-app.get('/form', function(req, res){
-    console.log('get form')
-    res.type('html')
-    res.render('form');
-})
-app.get('/users', async (req, res) => {
-    const user = await User.findAll();
-    res.json(await user)
-
-    //console.log(await user)
-    //res.redirect('/')
-    //res.end()
-}); //Listar todos
-
-app.get('/list', async (req, res) => {
-    
-    res.sendFile(path.join(__dirname+'/views/list.html'))
-
-    //console.log('entrou no get list')
-    //res.render('list')
-})
-
-app.post('/register', async (req, res) => {
-    
-    console.log('POST REQ TO ADD NEW USER')
-    let user = await User.create(req.body)
-                    .then()
-                    .catch(e => false)//e)
-    //let user = await req.body;
-    if(user) res.json(await user)
-    else res.jsonp(null);
-    //res.redirect('/')
-    //res.end()
-});
 
 app.post('/update', async (req, res) => {
     
