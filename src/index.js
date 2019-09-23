@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 //const router = express.Router();
@@ -10,8 +11,8 @@ const categoriesRouter = require('./routes/categories');
 const statusRouter = require('./routes/status');
 const usersRouter = require('./routes/users');
 const scopesRouter = require('./routes/scopes');
-
 const app = express();
+app.use(cors());
 
 global.users = [];
 
@@ -29,17 +30,17 @@ app.use('/scopes', scopesRouter)
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.header('Access-Control-Allow-Origin', "*");
 
     // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
     // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.header('Access-Control-Allow-Headers', 'Origin, Accept, X-Requested-With,content-type');
 
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.header('Access-Control-Allow-Credentials', true);
 
     // Pass to next layer of middleware
     next();
