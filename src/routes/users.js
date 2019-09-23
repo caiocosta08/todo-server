@@ -24,7 +24,7 @@ router.post('/delete', async function(req, res, next){
 });
 
 router.post('/update', async function(req, res, next){
-    let users = await User.destroy({
+    let users = await User.update({
         name: req.body.name,
         description: req.body.description
     },{

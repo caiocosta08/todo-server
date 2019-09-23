@@ -24,7 +24,7 @@ router.post('/delete', async function(req, res, next){
 });
 
 router.post('/update', async function(req, res, next){
-    let scopes = await Scope.destroy({
+    let scopes = await Scope.update({
         name: req.body.name,
         description: req.body.description
     },{

@@ -24,7 +24,7 @@ router.post('/delete', async function(req, res, next){
 });
 
 router.post('/update', async function(req, res, next){
-    let categorie = await Categorie.destroy({
+    let categorie = await Categorie.update({
         name: req.body.name,
         description: rew.body.description
     },{
