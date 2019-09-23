@@ -49,39 +49,6 @@ app.get('/', function(req, res){
     res.render('index', { title: 'Hey', message: 'Hello there!'});
 })
 
-app.post('/update', async (req, res) => {
-    
-    console.log('POST REQ TO EDIT USER')
-    let user = await User.update({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    }, {where: {
-        id: req.body.id
-    }})
-                    .then()
-                    .catch(e => false)//e)
-                    
-    //let user = await req.body;
-    if(user) res.json(await user)
-    else res.jsonp(null);
-    //res.redirect('/')
-    //res.end()
-});
-
-app.post('/delete', async (req, res) => {
-    console.log('POST REQ TO DELETE USER');
-    let user = await User.destroy({
-        where: {
-            id: req.body.id
-        }
-    })
-        .then()
-        .catch(error => false)
-    if(user) res.json(await user);
-    else res.jsonp(null);
-});
-
 app.listen(8000, function(){
     console.log('Servidor rodando no link: http://localhost:8000');
 });
