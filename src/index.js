@@ -50,6 +50,8 @@ app.get('/', function(req, res){
 })
 
 app.listen(8000, function(){
-    console.log('Servidor rodando no link: http://localhost:8000');
+    var message = "Server running on port 8000 / IP to local network access: 192.168.43.194:8000"
+    console.log(message);
 });
+
 
