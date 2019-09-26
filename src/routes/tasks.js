@@ -16,7 +16,8 @@ router.post('/new', async function(req, res, next){
 router.post('/delete', async function(req, res, next){
     let task = await Task.destroy({
         where: {
-            id: req.body.id
+            id: req.body.id,
+            //user_id: req.body.user_id 
         }
     });
     if(task) res.json(task);
@@ -26,10 +27,17 @@ router.post('/delete', async function(req, res, next){
 router.post('/update', async function(req, res, next){
     let task = await Task.update({
         name: req.body.name,
-        description: req.body.description
+        description: req.body.description,
+        scope: req.body.scope,
+        date_todo: req.body.date_todo,
+        categorie_id: req.body.categorie_id,
+        status_id: req.body.status_id,
+        date_finish: req.body.date_finish,
+
     },{
         where: {
-            id: req.body.id
+            id: req.body.id,
+            //user_id: req.body.user_id
         }
     });
     if(task) res.json(task);

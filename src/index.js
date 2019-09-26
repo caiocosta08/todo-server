@@ -8,7 +8,7 @@ const configRouter = require('./routes/config');
 const profileRouter = require('./routes/profile');
 const tasksRouter = require('./routes/tasks');
 const categoriesRouter = require('./routes/categories');
-const statusRouter = require('./routes/status');
+const statusesRouter = require('./routes/statuses');
 const usersRouter = require('./routes/users');
 const scopesRouter = require('./routes/scopes');
 const app = express();
@@ -23,7 +23,7 @@ app.use('/profile', profileRouter);
 app.use('/config', configRouter);
 app.use('/tasks', tasksRouter)
 app.use('/categories', categoriesRouter)
-app.use('/status', statusRouter)
+app.use('/statuses', statusesRouter)
 app.use('/users', usersRouter)
 app.use('/scopes', scopesRouter)
 // Add headers
