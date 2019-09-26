@@ -12,6 +12,7 @@ const statusesRouter = require('./routes/statuses');
 const usersRouter = require('./routes/users');
 const scopesRouter = require('./routes/scopes');
 const app = express();
+
 app.use(cors());
 
 global.users = [];
